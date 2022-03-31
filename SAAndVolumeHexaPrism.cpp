@@ -1,13 +1,16 @@
 #include <iostream>
 #include <stdlib.h>
 #include <cmath>
+#include <cstdio>
 #include <climits>
+#include <iomanip>
 //#include <format>
 
 using std::cout;
 using std::cin;
 using std::string;
 using std::endl;
+using std::setprecision;
 //using std::format;
 
 
@@ -19,8 +22,7 @@ using std::endl;
 
 
 string unit;
-float length, height, area, volume;
-bool unitLoop = true, loop2 = true, loop3 = true, loop4 =true;
+// float length, height, area, volume;
 
 void introduction () {
     cout << endl <<
@@ -31,14 +33,16 @@ void introduction () {
 
 void unitSelect() {
     introduction();
+    bool unitLoop
+    string unitSelect.unit;
     
-    while (::unitLoop == true){
+    while (unitLoop == true){
         cout << "Please enter your unit of measurement below. Only compatible with cm, mm, in, m\n";
-        cin >> ::unit;
+        cin >> unitsSelect.unit;
         
-        if (::unit != "mm" || "cm" || "m" || "in"){
+        if (unit == "mm" || "cm" || "m" || "in"){
             cout << BOLDGREEN << "Unit selected successfully!" << RESET<< endl;
-            ::unitLoop = false;
+            unitLoop = false;
         } else {
             cout << BOLDRED << "Invalid Unit." << RESET<<endl;
             
@@ -51,43 +55,45 @@ void unitSelect() {
 void calculate() {
     unitSelect();
     
+    
     cout << "Enter the base length of the hexagonal prism" << endl;
-    cin >> ::length;
+    cin >> calculate.length;
     
     while(cin.fail()) {
         cin.clear();
         cin.ignore(INT_MAX, '\n');
 		cout << BOLDRED << "That Number was invalid\n" << RESET;
 		cout <<"Enter the base length of the hexagonal prism\n";
-		cin >> ::length;
+		cin >> calculate.length;
     }
     
     cout << "Enter the height of the hexagonal prism" << endl;
-    cin >> ::height;
+    cin >> calculate.height;
     
     while(cin.fail()) {
         cin.clear();
         cin.ignore(INT_MAX, '\n');
 		cout << BOLDRED << "That Number was invalid\n" << RESET;
 		cout <<"Enter the base length of the hexagonal prism\n";
-		cin >> ::height;
+		cin >> calculate.height;
     }
     
-    ::area = (6 * ::length * ::height) + (3 * sqrt(3)) * pow(::length, 2);
-    ::volume = (3 * sqrt(3)) / 2 * pow(::length, 2) * ::height;
+    calculate.area = (6 * calculate.length * calculate.height) + (3 * sqrt(3)) * pow(calculate.length, 2);
+    calculate.volume = (3 * sqrt(3)) / 2 * pow(calculate.length, 2) * calculate.height;
 }
 
 
 void finalStatements(){
     calculate();
     
-    cout << "The Surface area of your hexagonal prism is {:.2f} {}^2", ::area, ::unit;
+    cout << BOLDYELLOW << "The Surface area of your hexagonal prism is %.2f" << calculate.area << unitSelect.unit<< " ^2";
+    cout << BOLDYELLOW << "The Volume of your hexagonal prism is ";
 }
 
 int main() {
 	finalStatements();
     
-    cout << ::length << ::unit << endl;
-    cout << ::height;
+    cout << calculate.length << unitSelect.unit << endl;
+    cout << calculate.height;
 
 }
